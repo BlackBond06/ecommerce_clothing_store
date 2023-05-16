@@ -25,7 +25,6 @@ const Slider = () => {
       width="100%"
       position="relative"
       overflow="hidden"
-      background="red"
     >
       <Flex width="100%" height="auto">
         <Image

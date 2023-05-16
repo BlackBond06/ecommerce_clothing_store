@@ -1,17 +1,28 @@
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PostLoader from "../PostLoader/PostLoader";
 
 const Categories = () => {
   const [data, setPhotosResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  const fetchImageFromApi = async ()=>{
+    try {
+      setLoading(true);
+      const response = await fetch("https://fakestoreapi.com/products");
+      const result = await response.json();
+      setPhotosResponse(result);
+    } catch (error) {
+      console.log("fetchImageFromApi error: ", error.message);
+    }
+
+    setLoading(false);
+   
+  }
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((result) => setPhotosResponse(result))
-      .catch(() => {
-        console.log("something went wrong!");
-      });
+   
+    fetchImageFromApi();
   }, []);
 
   if (data === null) {
@@ -21,6 +32,9 @@ const Categories = () => {
   } else {
     const [first, second, third, fourth, fifth, sixth] = data;
     return (
+      <>
+      {loading ? (<PostLoader/>) :
+      (
       <Flex
         direction={{ base: "column", md: "row" }}
         gap={2}
@@ -196,6 +210,9 @@ const Categories = () => {
           </Flex>
         </Flex>
       </Flex>
+      )
+      }
+      </>
     );
   }
 };
