@@ -11,7 +11,8 @@ const Card = ({ photo }) => {
   const { user, urls } = photo;
   return (
     <Link to={`/product/${photo.id}`}>
-      <Flex width={{ base: "auto", md: "auto", lg:"280px" }} direction="column">
+      <Flex width={{ base: "auto", md: "250px", lg:"280px" }} direction="column" >
+
         <Box
           width="100%"
           height={{ base: "auto", md: "400px" }}

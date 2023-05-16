@@ -45,9 +45,10 @@ const FeaturedProducts = ({ type }) => {
           <Stack
             margin={{
               base: "50px 25px 10px 25px",
-              md: "70px 100px 10px 100px",
+              md: "70px 70px 10px 70px",
               lg: "100px 200px",
             }}
+            paddingLeft={{base:"unset", md:"35px", lg:"unset"}}
           >
             <Flex
               direction={{ base: "column", md: "row" }}

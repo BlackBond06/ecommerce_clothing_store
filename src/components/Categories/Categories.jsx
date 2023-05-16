@@ -41,7 +41,7 @@ const Categories = () => {
         margin="100px 10px 100px 10px"
       >
         <Flex flex={1} direction="column" gap={{ base: "60px", md: "10px" }}>
-          <Flex flex={1} position="relative" overflow="hidden">
+          <Flex flex={1} position="relative" overflow="hidden" height={{ base: "400px", md: "auto" }}>
             <Image
               src={first.image}
               width="100%"
@@ -65,7 +65,7 @@ const Categories = () => {
               <Link to="/Products/1">Sale</Link>
             </Button>
           </Flex>
-          <Flex flex={1} position="relative" overflow="hidden">
+          <Flex flex={1} position="relative" overflow="hidden" height={{ base: "400px", md: "auto" }}>
             <Image
               src={second.image}
               width="100%"
@@ -95,6 +95,7 @@ const Categories = () => {
           position="relative"
           overflow="hidden"
           marginTop={{ base: "60px", md: "unset" }}
+          height={{ base: "400px", md: "auto" }}
         >
           <Image
             src={third.image}
@@ -126,7 +127,9 @@ const Categories = () => {
             gap={{ base: "20px", md: "10px" }}
           >
             <Flex flex={1} marginTop={{ base: "50px", md: "unset" }}>
-              <Flex flex={1} position="relative" overflow="hidden">
+              <Flex flex={1} position="relative" overflow="hidden"
+              height={{ base: "400px", md: "auto" }}
+              >
                 <Image
                   src={fourth.image}
                   width="100%"
@@ -152,12 +155,14 @@ const Categories = () => {
               </Flex>
             </Flex>
             <Flex flex={1}>
-              <Flex flex={1} position="relative" overflow="hidden">
+              <Flex flex={1} position="relative" overflow="hidden"
+              height={{ base: "400px", md: "auto" }}
+              >
                 <Image
                   src={fifth.image}
                   width="100%"
                   height="100%"
-                  objectFit="cover"
+                  
                 />
                 <Button
                   position="absolute"
@@ -183,7 +188,7 @@ const Categories = () => {
               flex={1}
               position="relative"
               marginTop={{ base: "50px", md: "10px" }}
-            >
+                          >
               <Image
                 src={sixth.image}
                 width="100%"
