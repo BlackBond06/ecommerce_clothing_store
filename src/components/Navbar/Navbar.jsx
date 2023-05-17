@@ -168,7 +168,7 @@ const Navbar = () => {
             </Box>
             <Box _hover={{ textDecoration: "underline" }} fontSize=".9rem">
               <Link
-                to="/products/1"
+                to="/product/1"
                 style={{ color: "inherit", textDecoration: "none" }}
               >
                 STORES
