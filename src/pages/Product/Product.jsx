@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, Icon, Image, Stack, Text } from "@chakra-ui/react";
 import PostLoader from "../../components/PostLoader/PostLoader";
 import { api } from "../../components/Card/Card";
+import {MdOutlineAddShoppingCart, MdOutlineBalance} from "react-icons/md";
+import {AiOutlineHeart} from "react-icons/ai";
 
 const routerVariants = {
   initial: {
@@ -17,7 +19,7 @@ const Product = () => {
   const [data, setPhotosResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const fetchImageFromApi = async () => {
     try {
@@ -51,7 +53,7 @@ const Product = () => {
     );
   } else {
     const images = data.response.results.map((photo, idx) => photo);
-
+    
     return (
       <motion.div variants={routerVariants} initial="initial" animate="final">
         <Flex padding="20px 50px" gap="50px" direction={{base:"column", md:"column", lg:"unset"}}>
@@ -85,21 +87,64 @@ const Product = () => {
               />
             </Box>
           </Flex>
-          <Flex flex={1} direction="column">
+          <Flex flex={1} direction="column" gap="30px">
             <Heading fontSize="14px">Title</Heading>
-            <Text>$299</Text>
-            <Text>
+            <Text fontSize="30px"
+            color="#2879fe"
+            fontWeight={500}
+            >$299</Text>
+            <Text fontSize="18px" fontWeight={300}
+            textAlign="justify"
+            >
               Our jacket is made from high-quality materials, providing both
               comfort and style. It features a sleek design with a versatile
               color scheme, making it easy to pair with any outfit. The jacket
               is equipped with multiple pockets for storing your essentials
               while on the go.
             </Text>
-            <Flex align="center">
-              <Button onClick={()=> setQuantity(prev => prev <= 0 ? 0: prev - 1)}>-</Button>
+            <Flex align="center" gap={2}>
+              <Button onClick={()=> setQuantity(prev => prev === 1 ? 1: prev - 1)}
+              width="50px"
+              height="50px"
+              border="none"
+              >-</Button>
               {quantity}
-              <Button onClick={()=> setQuantity(prev => prev + 1)}>+</Button>
+              <Button onClick={()=> setQuantity(prev => prev + 1)}
+              width="50px"
+              height="50px"
+              border="none"
+              >+</Button>
             </Flex>
+            <Button width="250px" padding="10px" backgroundColor="#2879fe" color="white"
+            border="none"
+            >
+              <Icon as={MdOutlineAddShoppingCart} marginRight={2} fontWeight={500}/>
+              ADD TO CART
+            </Button>
+
+            <Flex gap={3}>
+              <Flex alignItems="center" gap={1} color="#2879fe" fontSize="14px">
+              <Icon as={AiOutlineHeart}/>
+              ADD TO WISHLIST
+              </Flex>
+              <Flex  alignItems="center" gap={1} color="#2879fe" fontSize="14px">
+              <Icon as={MdOutlineBalance}/>
+              ADD TO COMPARE
+              </Flex>
+            </Flex>
+            <Stack color="gray.500" fontSize={14}>
+              <Text>Vendor: Denim Jacket</Text>
+              <Text>Product Type: Jacket</Text>
+              <Text>Tag: Jacket, Uni-Sex, Top</Text>
+              <Divider/>
+              <Flex direction="column" gap={2}>
+                <Text>DESCRIPTION</Text>
+                <Divider/>
+                <Text>ADDITIONAL INFORMATION</Text>
+                <Divider/>
+                <Text>FAQ</Text>
+              </Flex>
+            </Stack>
           </Flex>
         </Flex>
       </motion.div>
