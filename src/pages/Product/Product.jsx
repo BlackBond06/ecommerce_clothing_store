@@ -41,7 +41,6 @@ const Product = () => {
     fetchImageFromApi();
   }, []);
 
-  console.log(data);
   if (data === null) {
     return <PostLoader />;
   } else if (data.errors) {
@@ -117,6 +116,7 @@ const Product = () => {
             </Flex>
             <Button width="250px" padding="10px" backgroundColor="#2879fe" color="white"
             border="none"
+            _hover={{background:"blue.200"}}
             >
               <Icon as={MdOutlineAddShoppingCart} marginRight={2} fontWeight={500}/>
               ADD TO CART

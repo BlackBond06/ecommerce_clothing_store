@@ -13,11 +13,14 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
+
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [open, setOpen] = useState(false);
 
   return (
     <Stack
@@ -203,8 +206,9 @@ const Navbar = () => {
               <ShoppingCartIcon
                 sx={{
                   color: colorMode === "light" ? "inherit" : "whitesmoke",
-                  fontSize: "30px",
+                  fontSize: "30px", cursor:"pointer"
                 }}
+                onClick={()=> setOpen(!open)}
               />
               <span
                 style={{
@@ -240,6 +244,7 @@ const Navbar = () => {
           </Flex>
         </Flex>
       </Flex>
+      {open && <Cart/>}
     </Stack>
   );
 };
