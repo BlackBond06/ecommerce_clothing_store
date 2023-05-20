@@ -26,7 +26,7 @@ const Categories = () => {
   }, []);
 
   if (data === null) {
-    return <Box>Loading...</Box>;
+    return (<PostLoader/>);
   } else if (data.errors) {
     return <Box>{data.errors[0]}</Box>;
   } else {
@@ -221,5 +221,7 @@ const Categories = () => {
     );
   }
 };
+
+// apiToken = 9b615a125b4b3abfb44116e2fc668410bd80d97dce0d9c655b1d5a88d174315cf946cb50e4921b118d204fb8319ae1e7129820a0c88245501be021d04145ac2433513d830033b067c533958ba6b226b141b4ab29be6e7ae33c2a0aa0bea227ca8824db7e5e49b64fc2ea715db0f0156dd3789f6e87535581a0ae757c872cc32c
 
 export default Categories;
