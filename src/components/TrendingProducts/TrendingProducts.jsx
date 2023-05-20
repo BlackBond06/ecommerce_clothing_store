@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Card, { api } from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
 
+
 const TrendingProducts = ({ type }) => {
   const [data, setPhotosResponse] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -68,9 +69,7 @@ const TrendingProducts = ({ type }) => {
             <Flex>
               <Flex align="center" wrap="wrap" gap="50px" position="relative">
                 {data.response.results.map((photo, idx) => (
-                  <Skeleton isLoaded={data ? true : false}>
-                    <Card key={idx} photo={photo} />
-                  </Skeleton>
+                  <Card key={idx} photo={photo} />
                 ))}
               </Flex>
             </Flex>

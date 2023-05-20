@@ -2,30 +2,59 @@ import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Card, { api } from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
+import axios from "axios";
 
 const FeaturedProducts = ({ type }) => {
-  const [data, setPhotosResponse] = useState(null);
+  // const [data, setPhotosResponse] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchImageFromApi = async () => {
-    try {
-      setLoading(true);
-      const response = await api.search.getPhotos({
-        query: "gown",
-        perPage: 6,
-        orientation: "landscape",
-      });
-      setPhotosResponse(response);
-    } catch (error) {
-      console.log("fetchImageFromApi error: ", error.message);
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      try {
+        setLoading(true);
+        const response = await axios.get(process.env.REACT_APP_API_URL + "/products?populate=*", {
+          headers:{
+            Authorization: "bearer " + process.env.REACT_APP_API_TOKEN 
+          },
+        });
+
+        const result = response.data.data;
+
+        
+        setData(result);
+      } catch (error) {
+        console.log("fetchData error: ", error);
+      }
+
+      setLoading(false);
     }
 
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchImageFromApi();
+    fetchData();
   }, []);
+
+ 
+
+  // const fetchImageFromApi = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await api.search.getPhotos({
+  //       query: "gown",
+  //       perPage: 6,
+  //       orientation: "landscape",
+  //     });
+  //     setPhotosResponse(response);
+  //   } catch (error) {
+  //     console.log("fetchImageFromApi error: ", error.message);
+  //   }
+
+  //   setLoading(false);
+  // };
+
+  // useEffect(() => {
+  //   fetchImageFromApi();
+  // }, []);
 
   if (data === null) {
     return <PostLoader />;
@@ -67,7 +96,7 @@ const FeaturedProducts = ({ type }) => {
             </Flex>
             <Flex>
               <Flex align="center" wrap="wrap" gap="50px" position="relative">
-                {data.response.results.map((photo, idx) => (
+                {data.map((photo, idx) => (
                   <Card key={idx} photo={photo} />
                 ))}
               </Flex>

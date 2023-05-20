@@ -8,7 +8,8 @@ export const api = createApi({
 });
 
 const Card = ({ photo }) => {
-  const { user, urls } = photo;
+ 
+ 
   return (
     <Link to={`/product/${photo.id}`}>
       <Flex width={{ base: "auto", md: "250px", lg:"280px" }} direction="column" >
@@ -34,19 +35,19 @@ const Card = ({ photo }) => {
             New Season
           </Text>
           <Image
-            src={urls.regular}
+          src={process.env.REACT_APP_UPLOAD_URL + photo.attributes?.img.data.attributes.url}
             width="100%"
             height="100%"
             objectFit="cover"
             position="relative"
           />
         </Box>
-        <Heading fontSize="1em">{user.name}</Heading>
+        <Heading fontSize="1em">{photo?.attributes?.title}</Heading>
         <Flex gap={4}>
           <Text color="gray" textDecoration="line-through">
             $124
           </Text>
-          <Text fontWeight={700}>$75</Text>
+          <Text fontWeight={700}>{photo?.attributes?.price}</Text>
         </Flex>
       </Flex>
     </Link>
