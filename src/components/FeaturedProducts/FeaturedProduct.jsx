@@ -1,8 +1,8 @@
 import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import Card, { api } from "../Card/Card";
-import PostLoader from "../PostLoader/PostLoader";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Card from "../Card/Card";
+import PostLoader from "../PostLoader/PostLoader";
 
 const FeaturedProducts = ({ type }) => {
   // const [data, setPhotosResponse] = useState(null);

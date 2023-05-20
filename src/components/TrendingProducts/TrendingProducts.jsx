@@ -2,6 +2,7 @@ import { Flex, Heading, Stack, Text, Skeleton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Card, { api } from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
+import Unsplash from "../Unsplash/Unsplash";
 
 
 const TrendingProducts = ({ type }) => {
@@ -28,6 +29,7 @@ const TrendingProducts = ({ type }) => {
     fetchImageFromApi();
   }, []);
 
+ 
   if (data === null) {
     return <PostLoader />;
   } else if (data.errors) {
@@ -69,7 +71,7 @@ const TrendingProducts = ({ type }) => {
             <Flex>
               <Flex align="center" wrap="wrap" gap="50px" position="relative">
                 {data.response.results.map((photo, idx) => (
-                  <Card key={idx} photo={photo} />
+                  <Unsplash key={idx} photo={photo} />
                 ))}
               </Flex>
             </Flex>

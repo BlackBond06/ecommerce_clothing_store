@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Card, { api } from "../Card/Card";
-import PostLoader from "../PostLoader/PostLoader";
 import { Flex } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { api } from "../Card/Card";
+import PostLoader from "../PostLoader/PostLoader";
+import Unsplash from "../Unsplash/Unsplash";
 
 const List = () => {
   const [data, setPhotosResponse] = useState(null);
@@ -42,7 +43,7 @@ const List = () => {
     <Flex wrap="wrap" align="center" gap={{base:"48px", md:"20px", lg:"48px"}}>
       {
         data.response.results.map((photo, idx) => (
-          <Card key={idx} photo={photo} />
+          <Unsplash key={idx} photo={photo} />
         ))
       }
     </Flex>

@@ -2,20 +2,20 @@ import {
   Box,
   Checkbox,
   Flex,
-  TagLabel,
-  Text,
-  Tag,
   Heading,
+  Image,
   RangeSlider,
-  RangeSliderTrack,
   RangeSliderFilledTrack,
   RangeSliderThumb,
-  Image,
+  RangeSliderTrack,
+  Tag,
+  TagLabel,
+  Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import List from "../../components/List/List";
 import { useParams } from "react-router-dom";
+import List from "../../components/List/List";
 
 const routerVariants = {
   initial: {
