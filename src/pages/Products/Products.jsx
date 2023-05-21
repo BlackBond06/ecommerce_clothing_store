@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import List from "../../components/List/List";
+import useFetch from "../../hooks/useFetch";
 
 const routerVariants = {
   initial: {
@@ -30,6 +31,15 @@ const Products = () => {
   const categoryId = Number(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState([]);
+
+  const {data, loading, error} = useFetch(`/sub-categories?[filters][categories][id][$eq]=${categoryId}`);
+
+  const handleChange = (e)=>{
+    const value = e.target.value;
+    const checked = e.target.checked;
+    console.log(checked);
+  }
 
   return (
     <motion.div variants={routerVariants} initial="initial" animate="final">
@@ -43,13 +53,15 @@ const Products = () => {
         >
           <Box>
             <Heading fontSize="14px"  marginBottom="20px">Product Categories</Heading>
-            <Flex marginBottom="10px">
-              <Checkbox value={1} />
-              <Tag marginLeft="10px" background="inherit">
-                <TagLabel>Shoes</TagLabel>
-              </Tag>
-            </Flex>
-            <Flex marginBottom="10px">
+           {data?.map(item =>(
+            <Flex marginBottom="10px" key={item.id}>
+            <Checkbox value={item.id} onChange={handleChange}/>
+            <Tag marginLeft="10px" background="inherit">
+              <TagLabel htmlFor={item.id}>{item.attributes.title}</TagLabel>
+            </Tag>
+          </Flex> 
+           )) }
+            {/* <Flex marginBottom="10px">
               <Checkbox value={1} />
               <Tag marginLeft="10px" background="inherit">
                 <TagLabel >Gowns</TagLabel>
@@ -60,7 +72,7 @@ const Products = () => {
               <Tag marginLeft="10px" background="inherit">
                 <TagLabel>Suits</TagLabel>
               </Tag>
-            </Flex>
+            </Flex> */}
           </Box>
           <Box marginBottom="30px">
             <Heading fontSize="14px" marginBottom="20px" marginTop="20px">Filter by price</Heading >

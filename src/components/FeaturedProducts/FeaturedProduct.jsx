@@ -7,7 +7,7 @@ import PostLoader from "../PostLoader/PostLoader";
 const FeaturedProducts = ({ type }) => {
 
   const {data, error, loading} = useFetch("/products?populate=*")
-
+ 
   if (data === null) {
     return <PostLoader />;
   } else if (error) {
