@@ -1,67 +1,19 @@
 import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useFetch from "../../hooks/useFetch";
 import Card from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
 
 const FeaturedProducts = ({ type }) => {
-  // const [data, setPhotosResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const [data, setData] = useState([]);
-
-  useEffect(()=>{
-    const fetchData = async ()=>{
-      try {
-        setLoading(true);
-        const response = await axios.get(process.env.REACT_APP_API_URL + "/products?populate=*", {
-          headers:{
-            Authorization: "bearer " + process.env.REACT_APP_API_TOKEN 
-          },
-        });
-
-        const result = response.data.data;
-
-        
-        setData(result);
-      } catch (error) {
-        console.log("fetchData error: ", error);
-      }
-
-      setLoading(false);
-    }
-
-    fetchData();
-  }, []);
-
- 
-
-  // const fetchImageFromApi = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.search.getPhotos({
-  //       query: "gown",
-  //       perPage: 6,
-  //       orientation: "landscape",
-  //     });
-  //     setPhotosResponse(response);
-  //   } catch (error) {
-  //     console.log("fetchImageFromApi error: ", error.message);
-  //   }
-
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   fetchImageFromApi();
-  // }, []);
+  const {data, error, loading} = useFetch("/products?populate=*")
 
   if (data === null) {
     return <PostLoader />;
-  } else if (data.errors) {
+  } else if (error) {
     return (
       <div>
-        <div>{data.errors[0]}</div>
+        <div>{error}</div>
         <div>PS: Make sure to set your access token!</div>
       </div>
     );
@@ -108,8 +60,6 @@ const FeaturedProducts = ({ type }) => {
   }
 };
 
-// Access key :5SXt8CLKOTFgkpYqj1ObxLmaW4FOAExtxR_I4GPGwKE
 
-// Secret key :U7BGxylfsWzGtucoJ4cRcaznTIvxFbRHrFg1QpmETgE
 
 export default FeaturedProducts;
