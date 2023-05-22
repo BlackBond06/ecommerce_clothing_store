@@ -30,17 +30,19 @@ const routerVariants = {
 const Products = () => {
   const categoryId = Number(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
-  const [sort, setSort] = useState(null);
+  const [sort, setSort] = useState("asc");
   const [selectedSubCategory, setSelectedSubCategory] = useState([]);
 
   const {data, loading, error} = useFetch(`/sub-categories?[filters][categories][id][$eq]=${categoryId}`);
 
   const handleChange = (e)=>{
     const value = e.target.value;
-    const checked = e.target.checked;
-    console.log(checked);
-  }
+    const isChecked = e.target.checked;
+    setSelectedSubCategory( isChecked ? [...selectedSubCategory, value] : selectedSubCategory.filter(item => item != value));
+  };
 
+
+  
   return (
     <motion.div variants={routerVariants} initial="initial" animate="final">
       <Flex  direction={{base:"column", md:"unset"}} padding={{base:"unset", md:"unset", lg:"30px 50px"}}>
@@ -61,18 +63,6 @@ const Products = () => {
             </Tag>
           </Flex> 
            )) }
-            {/* <Flex marginBottom="10px">
-              <Checkbox value={1} />
-              <Tag marginLeft="10px" background="inherit">
-                <TagLabel >Gowns</TagLabel>
-              </Tag>
-            </Flex>
-            <Flex align="center">
-              <Checkbox value={1} />
-              <Tag marginLeft="10px" background="inherit">
-                <TagLabel>Suits</TagLabel>
-              </Tag>
-            </Flex> */}
           </Box>
           <Box marginBottom="30px">
             <Heading fontSize="14px" marginBottom="20px" marginTop="20px">Filter by price</Heading >
@@ -91,26 +81,26 @@ const Products = () => {
           <Box>
             <Heading fontSize="14px" marginBottom="20px">Sort by</Heading>
             <Flex gap="10px">
-              <input type="radio" id="asc" value="asc" name="price" onChange={(e)=> setSort("asc")}/>
+              <input  type="radio" id="asc" value="asc" name="price" onChange={(e)=> setSort(e.target.value)}/>
               <label htmlFor="asc" >Price (Lowest first)</label>
             </Flex>
             <Flex gap="10px">
-              <input type="radio" id="desc" value="asc" name="price" onChange={(e)=> setSort("desc")}/>
+              <input type="radio" id="desc" value="desc" name="price" onChange={(e)=> setSort(e.target.value)}/>
               <label htmlFor="desc" >Price (Highest first)</label>
             </Flex>
           </Box>
         </Flex>
         <Flex  direction="column" flex={3}>
           <Box height="300px" marginBottom="50px">
-          <Image src="https://images.unsplash.com/photo-1627384113972-f4c0392fe5aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60" 
+         {loading ? "Loading..." : <Image src="https://images.unsplash.com/photo-1627384113972-f4c0392fe5aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60" 
           height="100%"
           width="100%"
           objectFit="cover"
-          />
+          />}
           </Box>
           <Box padding={{base:"30px 50px", md:"20px 12px", lg:"unset"}}>
 
-          <List categoryId={categoryId} maxPrice={maxPrice} sort={sort}/>
+          <List categoryId={categoryId} maxPrice={maxPrice} sort={sort} subCategory={selectedSubCategory}/>
           </Box>
           
         </Flex>

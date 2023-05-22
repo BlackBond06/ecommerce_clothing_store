@@ -1,33 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { api } from "../Card/Card";
+import React from "react";
+import useFetch from "../../hooks/useFetch";
+import Card from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
 
-// import Unsplash from "../Unsplash/Unsplash";
+const List = ({ subCategory, maxPrice, sort, categoryId }) => {
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][categories][id]=${categoryId}${subCategory.map(
+      (item) => `&[filters][sub_categories][id][$eq]=${item}`
+    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+  );
 
-const List = () => {
-  const [data, setPhotosResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  // const fetchImageFromApi = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.search.getPhotos({
-  //       query: "products",
-  //       perPage: 6,
-  //       orientation: "landscape",
-  //     });
-  //     setPhotosResponse(response);
-  //   } catch (error) {
-  //     console.log("fetchImageFromApi error: ", error.message);
-  //   }
-
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   fetchImageFromApi();
-  // }, []);
 
   if (data === null) {
     return <PostLoader />;
@@ -45,11 +28,11 @@ const List = () => {
         align="center"
         gap={{ base: "48px", md: "20px", lg: "48px" }}
       >
-        {/* {
-        data.response.results.map((photo, idx) => (
-          <Unsplash key={idx} photo={photo} />
-        ))
-      } */}
+        {loading ? (
+          <PostLoader />
+        ) : (
+          data?.map((photo, idx) => <Card key={idx} photo={photo} />)
+        )}
       </Flex>
     );
   }
