@@ -16,11 +16,14 @@ import { Stack } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [open, setOpen] = useState(false);
+
+  const products = useSelector((state) => state.cart.products);
 
   return (
     <Stack
@@ -226,7 +229,7 @@ const Navbar = () => {
                   fontSize: "12px",
                 }}
               >
-                0
+                {products.length}
               </span>
             </Flex>
 

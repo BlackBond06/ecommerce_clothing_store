@@ -38,7 +38,7 @@ const Products = () => {
   const handleChange = (e)=>{
     const value = e.target.value;
     const isChecked = e.target.checked;
-    setSelectedSubCategory( isChecked ? [...selectedSubCategory, value] : selectedSubCategory.filter(item => item != value));
+    setSelectedSubCategory( isChecked ? [...selectedSubCategory, value] : selectedSubCategory.filter(item => item !== value));
   };
 
 

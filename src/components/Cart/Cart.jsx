@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { api } from "../../components/Card/Card";
 import {
   Box,
   Button,
@@ -10,38 +8,49 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import React from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItemFromCart, resetCart } from "../../redux/cartReducer";
+import { loadStripe } from "@stripe/stripe-js";
+import { makeRequest } from "../../makeRequest";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
 
-  const subTotal = ()=>{
+  const subTotal = () => {
     let total = 0;
-    products.forEach(item => {
-      total += item.quantity * item.price
-    })
+    products.forEach((item) => {
+      total += item.quantity * item.price;
+    });
     return total.toFixed(2);
-  }
+  };
+
+  const stripePromise = loadStripe("pk_test_51NBC7QI0myv71fyybdsbR33Xj4IzzzRajtI11ExyqqB8nFOQAoqRtyBt64ykkq9gEIgZfqYgdaqgak69HnLPE0OP00Le18nBwz");
  
-  // const [data, setPhotosResponse] = useState(null);
+  const handlePayment = async ()=>{
+    try {
+      
+      const stripe = await stripePromise;
+      
+      const res = await makeRequest.post("/orders/", {
+        products,
 
-  // const fetchImageFromApi = async () => {
-  //   try {
-  //     const response = await api.search.getPhotos({
-  //       query: "jacket",
-  //       perPage: 2,
-  //       orientation: "landscape",
-  //     });
-  //     setPhotosResponse(response);
-  //   } catch (error) {
-  //     console.log("fetchImageFromApi error: ", error.message);
-  //   }
-  // };
+      });
 
-  // useEffect(() => {
-  //   fetchImageFromApi();
-  // }, []);
+      
+
+      
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id
+      });
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <Stack
@@ -57,34 +66,38 @@ const Cart = () => {
       <Heading fontSize={18} color="gray.500">
         Products in your cart
       </Heading>
-      {products?.map(item =>(
+      {products?.map((item) => (
         <Flex alignItems="center" gap={4} key={item.id}>
-        <Image 
-        src={process.env.REACT_APP_UPLOAD_URL + item.img}
-        width="80px" 
-        height="100px" 
-        objectFit="cover" />
-        <Box>
-          <Heading fontSize={18} marginBottom="10px" color="gray.500">
-            {item.title}
-          </Heading>
-          <Text
-            textOverflow="ellipsis"
-            color="gray.400"
-            marginBottom={2}
-            fontSize="14px"
-          >
-            {item.desc?.substring(0, 100)}
-          </Text>
-          <Text color="#2879fe">{item.quantity} x ${item.price}</Text>
-        </Box>
-        <Icon
-          as={RiDeleteBin5Line}
-          color="red"
-          fontSize="20px"
-          cursor="pointer"
-        />
-      </Flex>
+          <Image
+            src={process.env.REACT_APP_UPLOAD_URL + item.img}
+            width="80px"
+            height="100px"
+            objectFit="cover"
+          />
+          <Box>
+            <Heading fontSize={18} marginBottom="10px" color="gray.500">
+              {item.title}
+            </Heading>
+            <Text
+              textOverflow="ellipsis"
+              color="gray.400"
+              marginBottom={2}
+              fontSize="14px"
+            >
+              {item.desc?.substring(0, 100)}
+            </Text>
+            <Text color="#2879fe">
+              {item.quantity} x ${item.price}
+            </Text>
+          </Box>
+          <Icon
+            as={RiDeleteBin5Line}
+            color="red"
+            fontSize="20px"
+            cursor="pointer"
+            onClick={() => dispatch(removeItemFromCart(item.id))}
+          />
+        </Flex>
       ))}
       <Flex alignItems="center" justifyContent="space-between">
         <Text>SUBTOTAL</Text>
@@ -96,10 +109,16 @@ const Cart = () => {
         backgroundColor="#2879fe"
         color="white"
         border="none"
+        onClick={handlePayment}
       >
         PROCEED TO CHECKOUT
       </Button>
-      <Text color="red" fontSize="12px" cursor="pointer">
+      <Text
+        color="red"
+        fontSize="12px"
+        cursor="pointer"
+        onClick={() => dispatch(resetCart())}
+      >
         Reset Cart
       </Text>
     </Stack>
