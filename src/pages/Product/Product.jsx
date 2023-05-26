@@ -13,10 +13,10 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineAddShoppingCart, MdOutlineBalance } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostLoader from "../../components/PostLoader/PostLoader";
 import useFetch from "../../hooks/useFetch";
-import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
 
 const routerVariants = {

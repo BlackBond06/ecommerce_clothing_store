@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import React from "react";
+import { Link } from "react-router-dom";
 import { createApi } from "unsplash-js";
 
 export const api = createApi({

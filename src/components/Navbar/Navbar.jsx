@@ -14,9 +14,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
-import { useSelector } from "react-redux";
 
 
 const Navbar = () => {

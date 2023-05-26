@@ -8,12 +8,12 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItemFromCart, resetCart } from "../../redux/cartReducer";
-import { loadStripe } from "@stripe/stripe-js";
 import { makeRequest } from "../../makeRequest";
+import { removeItemFromCart, resetCart } from "../../redux/cartReducer";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart.products);
@@ -34,7 +34,7 @@ const Cart = () => {
       
       const stripe = await stripePromise;
       
-      const res = await makeRequest.post("/orders/", {
+      const res = await makeRequest.post("/orders", {
         products,
 
       });
