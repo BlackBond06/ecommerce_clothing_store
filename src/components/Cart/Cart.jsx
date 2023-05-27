@@ -27,30 +27,25 @@ const Cart = () => {
     return total.toFixed(2);
   };
 
-  const stripePromise = loadStripe("pk_test_51NBC7QI0myv71fyybdsbR33Xj4IzzzRajtI11ExyqqB8nFOQAoqRtyBt64ykkq9gEIgZfqYgdaqgak69HnLPE0OP00Le18nBwz");
- 
-  const handlePayment = async ()=>{
+  const stripePromise = loadStripe(
+    "pk_test_51NBC7QI0myv71fyybdsbR33Xj4IzzzRajtI11ExyqqB8nFOQAoqRtyBt64ykkq9gEIgZfqYgdaqgak69HnLPE0OP00Le18nBwz"
+  );
+
+  const handlePayment = async () => {
     try {
-      
       const stripe = await stripePromise;
-      
+
       const res = await makeRequest.post("/orders", {
         products,
-
       });
 
-      
-
-      
       await stripe.redirectToCheckout({
-        sessionId: res.data.stripeSession.id
+        sessionId: res.data.stripeSession.id,
       });
-
-      
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Stack

@@ -1,9 +1,8 @@
-import { Flex, Heading, Stack, Text, Skeleton } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Card, { api } from "../Card/Card";
+import { api } from "../Card/Card";
 import PostLoader from "../PostLoader/PostLoader";
 import Unsplash from "../Unsplash/Unsplash";
-import memoize from "lodash.memoize";
 
 
 const TrendingProducts = ({ type }) => {
