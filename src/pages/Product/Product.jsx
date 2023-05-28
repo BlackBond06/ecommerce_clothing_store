@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import PostLoader from "../../components/PostLoader/PostLoader";
 import useFetch from "../../hooks/useFetch";
 import { addToCart } from "../../redux/cartReducer";
+import PurchaseModal from "../../components/Modal/PurchaseModal";
 
 const routerVariants = {
   initial: {
@@ -32,16 +33,34 @@ const Product = () => {
   const id = useParams().id;
   const [selectedImg, setSelectedImg] = useState("img");
   const [quantity, setQuantity] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const { data, error } = useFetch(`/products/${id}?populate=*`);
 
-  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
+  const handleCart = () => {
+    dispatch(
+      addToCart({
+        id: data.id,
+        title: data.attributes.title,
+        desc: data.attributes.desc,
+        price: data.attributes.price,
+        img: data.attributes.img.data.attributes.url,
+        quantity,
+      })
+    );
+
+    setIsOpen(true);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 3000);
+  };
 
   if (data === null) {
     return <PostLoader />;
-  } else if (data.errors) {
+  } else if (error) {
     return (
       <div>
-        <div>{data.errors[0]}</div>
+        <div>{error}</div>
         <div>PS: Make sure to set your access token!</div>
       </div>
     );
@@ -53,6 +72,7 @@ const Product = () => {
           gap="50px"
           direction={{ base: "column", md: "column", lg: "unset" }}
         >
+          {isOpen && <PurchaseModal isOpen={isOpen}/>}
           <Flex flex={1} gap="50px">
             <Box flex={1} display={{ base: "none", md: "unset", lg: "unset" }}>
               <Image
@@ -129,14 +149,7 @@ const Product = () => {
               color="white"
               border="none"
               _hover={{ background: "blue.200" }}
-              onClick={()=> dispatch(addToCart({
-                id:data.id,
-                title:data.attributes.title,
-                desc:data.attributes.desc,
-                price:data.attributes.price,
-                img:data.attributes.img.data.attributes.url,
-                quantity
-              }))}
+              onClick={handleCart}
             >
               <Icon
                 as={MdOutlineAddShoppingCart}
