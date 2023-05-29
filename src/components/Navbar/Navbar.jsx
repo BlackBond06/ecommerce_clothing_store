@@ -221,7 +221,7 @@ const Navbar = () => {
                   color: "#fefefe",
                   width: "20px",
                   height: "20px",
-                  backgroundColor: "#2879fe",
+                  backgroundColor: "#a435f0",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",

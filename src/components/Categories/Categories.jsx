@@ -67,7 +67,8 @@ const Categories = () => {
                   transform="translate(-50%, -50%)"
                   cursor="pointer"
                   border="none"
-                  background="#66c3d0"
+                  color="#fefefe"
+                  background="#a435f0"
                   textTransform="uppercase"
                 >
                   <Link to="/Products/1">Sale</Link>
@@ -116,7 +117,8 @@ const Categories = () => {
                   transform="translate(-50%, -50%)"
                   cursor="pointer"
                   border="none"
-                  background="#66c3d0"
+                  color="#fefefe"
+                  background="#a435f0"
                   textTransform="uppercase"
                 >
                   <Link to="/Products/1">Sale</Link>
@@ -167,7 +169,8 @@ const Categories = () => {
                 transform="translate(-50%, -50%)"
                 cursor="pointer"
                 border="none"
-                background="#66c3d0"
+                color="#fefefe"
+                background="#a435f0"
                 textTransform="uppercase"
               >
                 <Link to="/Products/1">Sale</Link>
@@ -223,7 +226,8 @@ const Categories = () => {
                       transform="translate(-50%, -50%)"
                       cursor="pointer"
                       border="none"
-                      background="#66c3d0"
+                      color="#fefefe"
+                      background="#a435f0"
                       textTransform="uppercase"
                     >
                       <Link to="/Products/1">Sale</Link>
@@ -270,7 +274,8 @@ const Categories = () => {
                       transform="translate(-50%, -50%)"
                       cursor="pointer"
                       border="none"
-                      background="#66c3d0"
+                      color="#fefefe"
+                      background="#a435f0"
                       textTransform="uppercase"
                     >
                       <Link to="/Products/1">Sale</Link>
@@ -321,7 +326,8 @@ const Categories = () => {
                     transform="translate(-50%, -50%)"
                     cursor="pointer"
                     border="none"
-                    background="#66c3d0"
+                    color="#fefefe"
+                    background="#a435f0"
                     textTransform="uppercase"
                   >
                     <Link to="/Products/1">Sale</Link>

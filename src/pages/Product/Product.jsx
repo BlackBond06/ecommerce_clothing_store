@@ -72,7 +72,7 @@ const Product = () => {
           gap="50px"
           direction={{ base: "column", md: "column", lg: "unset" }}
         >
-          {isOpen && <PurchaseModal isOpen={isOpen}/>}
+          {isOpen && <PurchaseModal isOpen={isOpen} />}
           <Flex flex={1} gap="50px">
             <Box flex={1} display={{ base: "none", md: "unset", lg: "unset" }}>
               <Image
@@ -145,8 +145,8 @@ const Product = () => {
             <Button
               width="250px"
               padding="10px"
-              backgroundColor="#2879fe"
-              color="white"
+              color="#fefefe"
+              background="#a435f0"
               border="none"
               _hover={{ background: "blue.200" }}
               onClick={handleCart}

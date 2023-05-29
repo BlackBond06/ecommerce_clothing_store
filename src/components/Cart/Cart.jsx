@@ -101,8 +101,8 @@ const Cart = () => {
       <Button
         width="250px"
         padding="10px"
-        backgroundColor="#2879fe"
-        color="white"
+        color="#fefefe"
+        background="#a435f0"
         border="none"
         onClick={handlePayment}
       >

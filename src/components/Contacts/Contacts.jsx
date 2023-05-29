@@ -7,7 +7,7 @@ import React from 'react';
 
 const Contacts = () => {
   return (
-    <Flex background="#2879fe"
+    <Flex background="#a435f0"
     color="white"
     justifyContent="center"
     marginTop={{base:"50px", md:"unset"}}
