@@ -72,7 +72,7 @@ const Footer = () => {
           </Text>
         </Flex>
         <Box>
-          <Image src="/Assets/payment.png" height="50px" />
+          <Image src="/Assets/payment.png" height="50px" width="400px" />
         </Box>
       </Flex>
     </Stack>
