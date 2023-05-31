@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Unsplash = ({ photo }) => {
-  const { user, urls } = photo;
+  const { urls } = photo;
   return (
     <Link to={`/product/${photo.id}`}>
       <Flex
