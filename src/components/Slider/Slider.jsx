@@ -48,20 +48,20 @@ const Slider = () => {
           justify="center"
           width={10}
           height={10}
-          border="1px solid #999"
+          border="1px solid #a435f0"
           cursor="pointer"
         >
-          <Icon as={ArrowLeftIcon} onClick={prevSlide}></Icon>
+          <Icon color="#a435f0" as={ArrowLeftIcon} onClick={prevSlide}></Icon>
         </Flex>
         <Flex
           align="center"
           justify="center"
           width={10}
           height={10}
-          border="1px solid #999"
+          border="1px solid #a435f0"
           cursor="pointer"
         >
-          <Icon as={ArrowRightIcon} onClick={nextSlide}></Icon>
+          <Icon color="#a435f0" as={ArrowRightIcon} onClick={nextSlide}></Icon>
         </Flex>
       </Flex>
     </Stack>

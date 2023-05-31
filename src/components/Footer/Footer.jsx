@@ -72,7 +72,7 @@ const Footer = () => {
           </Text>
         </Flex>
         <Box>
-          <Image src="/Assets/payment.png" height="50px" width="400px" />
+          <Image src="/Assets/payment.png" height="50px" width="400px" alt="payment gateway image"/>
         </Box>
       </Flex>
     </Stack>

@@ -55,8 +55,7 @@ const Cart = () => {
       zIndex={5}
       backgroundColor="gray.100"
       padding="20px"
-      boxShadow="0.8rem 0.8rem 1.4rem #c8d0e7,
-          -0.2rem -0.2rem 1.8rem #c8d0e7"
+      boxShadow='2xl' p='6' rounded='md' bg='white'
     >
       <Heading fontSize={18} color="gray.500">
         Products in your cart

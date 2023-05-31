@@ -18,7 +18,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
 
-
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [open, setOpen] = useState(false);
@@ -27,19 +26,24 @@ const Navbar = () => {
 
   return (
     <Stack
-      boxShadow="0.8rem 0.8rem 1.4rem #c8d0e7,
-          -0.2rem -0.2rem 1.8rem #c8d0e7"
+      boxShadow="2xl"
+      p="6"
+      rounded="md"
+      bg="white"
       sx={{
         height: "80px",
       }}
     >
       <Flex
         justify="space-between"
-        padding={{base:"25px 25px 25px 10px", md:"25px 25px"}}
+        padding={{ base: "25px 25px 25px 10px", md: "25px 25px" }}
         letterSpacing="0.025em"
         fontWeight="700"
       >
-        <Flex align="center" display={{ base: "unset", md: "unset", lg:"none" }}>
+        <Flex
+          align="center"
+          display={{ base: "unset", md: "unset", lg: "none" }}
+        >
           <Menu>
             <MenuButton
               as={HamburgerIcon}
@@ -91,7 +95,7 @@ const Navbar = () => {
         <Flex
           align="center"
           gap="20px"
-          display={{ base: "none", md: "none", lg:"flex"}}
+          display={{ base: "none", md: "none", lg: "flex" }}
           fontSize=".9rem"
         >
           <Box _hover={{ textDecoration: "underline" }}>
@@ -135,7 +139,7 @@ const Navbar = () => {
             </Link>
           </Box>
         </Flex>
-        <Flex align="center" width={{ base: "100%", md: "100%", lg:"auto" }}>
+        <Flex align="center" width={{ base: "100%", md: "100%", lg: "auto" }}>
           <Link
             to="/"
             style={{
@@ -144,8 +148,7 @@ const Navbar = () => {
               letterSpacing: "0.25em",
               textAlign: "center",
               width: "100%",
-             fontStyle:"italic"
-            
+              fontStyle: "italic",
             }}
           >
             STYLESTOCK
@@ -159,7 +162,7 @@ const Navbar = () => {
         >
           <Flex
             align="center"
-            display={{ base: "none", md: "none", lg:"flex" }}
+            display={{ base: "none", md: "none", lg: "flex" }}
             justify="space-between"
             gap="30px"
             marginLeft="5rem"
@@ -192,10 +195,9 @@ const Navbar = () => {
           <Flex
             align="center"
             color="#777"
-            justify={{lg:"space-between", md:"flex-end"}}
-            width={{base:"auto", md:"100%", lg:"100%"}}
-            gap={{base:7, md:"50px", lg:7}}
-           
+            justify={{ lg: "space-between", md: "flex-end" }}
+            width={{ base: "auto", md: "100%", lg: "100%" }}
+            gap={{ base: 7, md: "50px", lg: 7 }}
           >
             <Flex align="center" display={{ base: "none", md: "flex" }}>
               <SearchIcon
@@ -209,9 +211,10 @@ const Navbar = () => {
               <ShoppingCartIcon
                 sx={{
                   color: colorMode === "light" ? "inherit" : "whitesmoke",
-                  fontSize: "30px", cursor:"pointer"
+                  fontSize: "30px",
+                  cursor: "pointer",
                 }}
-                onClick={()=> setOpen(!open)}
+                onClick={() => setOpen(!open)}
               />
               <span
                 style={{
@@ -247,7 +250,7 @@ const Navbar = () => {
           </Flex>
         </Flex>
       </Flex>
-      {open && <Cart/>}
+      {open && <Cart />}
     </Stack>
   );
 };

@@ -26,7 +26,7 @@ const Card = ({ photo }) => {
             top="5px"
             left="5px"
             backgroundColor="white"
-            color="teal"
+            color="#a435f0"
             padding="3px 5px"
             zIndex={2}
             fontWeight={500}
