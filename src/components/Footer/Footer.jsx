@@ -52,18 +52,15 @@ const Footer = () => {
             Contact
           </Heading>
           <Text textAlign="justify" marginTop="10px">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-            architecto exercitationem vero aspernatur quidem iure totam,
-            inventore debitis numquam. Similique?
+            StyleStock Fashion Boutique 123 Fashion Avenue New York, NY 10001
           </Text>
         </Box>
       </Flex>
       <Flex
-      
         justify="space-between"
         flexDirection={{ base: "column-reverse", md: "row" }}
       >
-        <Flex align="center" marginTop={{base:"20px", md:"unset"}}>
+        <Flex align="center" marginTop={{ base: "20px", md: "unset" }}>
           <Text color="#2879fe" fontWeight={500} fontStyle="italic">
             STYLESTOCK
           </Text>
@@ -72,7 +69,12 @@ const Footer = () => {
           </Text>
         </Flex>
         <Box>
-          <Image src="/Assets/payment.png" height="50px" width="400px" alt="payment gateway image"/>
+          <Image
+            src="/Assets/payment.png"
+            height="50px"
+            width="400px"
+            alt="payment gateway image"
+          />
         </Box>
       </Flex>
     </Stack>
