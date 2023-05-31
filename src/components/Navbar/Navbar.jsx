@@ -143,7 +143,7 @@ const Navbar = () => {
           <Link
             to="/"
             style={{
-              color: "inherit",
+              color: "#a435f0",
               textDecoration: "none",
               letterSpacing: "0.25em",
               textAlign: "center",

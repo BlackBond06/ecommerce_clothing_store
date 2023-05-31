@@ -61,7 +61,7 @@ const Footer = () => {
         flexDirection={{ base: "column-reverse", md: "row" }}
       >
         <Flex align="center" marginTop={{ base: "20px", md: "unset" }}>
-          <Text color="#2879fe" fontWeight={500} fontStyle="italic">
+          <Text color="#a435f0" fontWeight={500} fontStyle="italic">
             STYLESTOCK
           </Text>
           <Text marginLeft="10px" fontSize="12px">
